@@ -1,0 +1,187 @@
+/* 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 화면 전체 높이 */
+    background-color: #f5f5f5; /* 배경색 */
+}
+
+/* 컨테이너 스타일 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 20px;
+}
+
+/* 좌석 배치 영역 */
+#seatingArea {
+    display: grid;
+    grid-template-columns: repeat(30, 48px); /* 그리드 열 개수 설정 */
+    grid-auto-rows: 48px; /* 행 높이 설정 */
+    gap: 4px 4px;
+    justify-content: center; /* 중앙 정렬 */
+    width: auto;
+    margin: 0 auto;
+}
+/* 좌석 스타일 */
+.seat {
+    width: 35px;
+    height: 35px;
+    background-color: lightgray;
+    border: 1px solid #aaa;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    position: relative; /* 좌석 번호 배치를 위해 필요 */
+    display: inline-block; /* 좌석을 블록처럼 보이게 설정 */
+    border-radius: 5px; /* 좌석 모서리 둥글게 */
+    overflow: hidden; /* 텍스트 잘림 방지 */
+}
+
+/* 선택된 좌석 (파란색) */
+.seat.selected {
+    background-color: #7E84F7;
+    color: white;
+}
+
+/* 고정된 좌석 (빨간색) */
+.seat.locked {
+    background-color: #732BF5;
+    color: white;
+    cursor: not-allowed;
+    border: 2px solid #000000; /* 더 뚜렷하게 보이도록 테두리 추가 */
+}
+
+/* 비활성화된 좌석 */
+.seat.unavailable {
+    background-color: gray;
+    color: white;
+    cursor: not-allowed;
+}
+
+/* 좌석 번호 */
+.seat span {
+    font-size: 12px;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+    overflow: hidden; /* 넘치는 텍스트 잘림 방지 */
+    text-overflow: ellipsis; /* 넘치는 텍스트는 말줄임 표시 (...) */
+    position: static; /* 상대 위치가 아닌 기본 위치로 변경 */
+}
+
+/* 무대와 버튼 영역 */
+.stage-and-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* 좌석과 무대 간격 */
+    position: relative;
+    width: 100%;
+    min-height: 350px; /* 1층과 2층의 높이를 고정 */
+    margin-top: 20px;
+}
+
+/* 무대 스타일 */
+.screen {
+    grid-column: span 6; /* 좌석 기준으로 무대의 크기 조정 */
+    height: 250px;
+    background-color: gray;
+    text-align: center;
+    color: white;
+    line-height: 150px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 0 0 10px 0; /* 위쪽 여백 제거 */
+    position: relative; /* 위치 조정을 위한 설정 */
+    top: -270px; /* 위로 20px 이동 */
+    width: 890px; /* 무대의 폭을 80%로 설정 */
+    display: block; /* 항상 표시 */
+
+}
+/* 버튼 영역 */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, auto); /* 버튼 4개를 가로로 배치 */
+    justify-content: center; /* 버튼을 가운데 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: auto; /* 무대가 없어도 항상 아래 정렬 */
+    position: relative;
+    align-items: center; /* 버튼의 세로 정렬 */
+    height: -20px; /* 버튼 영역 높이 고정 */
+    top: -250PX;
+}
+
+/* 버튼 스타일 */
+.buttons button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #3580BB;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.buttons button:hover {
+    background-color: #286994; /* 버튼에 마우스 올릴 때 색상 변경 */
+}
+
+.buttons button:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.reset-button {
+    position: fixed; /* 뷰포트 기준으로 고정 */
+    bottom: 10px; /* 화면 하단에서 10px 위 */
+    left: 50%; /* 화면 중앙 정렬 */
+    transform: translateX(-50%); /* 중앙 정렬 보정 */
+    margin: 0;
+    padding: 10px 20px;
+    background-color: #c30000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#floorInfo {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    color: #7F7F7F;
+}
+.seat.preserved {
+    background-color: rgb(107, 107, 107);
+    color: white;
+    cursor: not-allowed;
+}
+#preserveButton {
+    width: auto; /* 버튼 크기 자동 */
+    padding: 10px 20px; /* 여백 추가 */
+    border-radius: 5px; /* 약간 둥근 모서리 */
+    background-color: #646464; /* 배경색: 빨간색 */
+    color: white; /* 텍스트 색상 */
+    font-size: 16px; /* 텍스트 크기 */
+    font-weight: bold; /* 텍스트 굵게 */
+    border: none; /* 테두리 제거 */
+    cursor: pointer; /* 클릭 가능 */
+    transition: background-color 0.3s ease; /* 색상 전환 효과 */
+}
+
+.footer {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 14px;
+}
